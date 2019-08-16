@@ -1,0 +1,4 @@
+apple|5
+pen|10
+banana|4
+iphone|8000
