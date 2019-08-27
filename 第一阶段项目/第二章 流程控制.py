@@ -96,7 +96,42 @@ while True:
     else:
         print("用户名或密码错误，您今日可输入次数已用尽，请明日再试")
         break
-
+    
+# 练习四参考答案一：
+name = 'Albert'
+password = '123'
+while True:
+    inp_name = input('用户名: ')
+    inp_pwd = input('密码: ')
+    if inp_name == name and inp_pwd == password:
+        while True:
+            cmd = input('>>: ')
+            if not cmd: continue #如果为空则重新输入
+            if cmd == 'quit':    #上一个if没有else，则顺序执行下一个if
+                break
+            print('run <%s>' % cmd)
+    else:
+        print('用户名或密码错误')
+        continue
+    break
+    
+# 练习四参考答案二：使用tag
+name = 'Albert'
+password = '123'
+tag = True
+while tag:
+    inp_name = input('用户名: ')
+    inp_pwd = input('密码: ')
+    if inp_name == name and inp_pwd == password:
+        while tag:
+            cmd = input('>>: ')
+            if not cmd: continue
+            if cmd == 'quit':
+                tag = False
+                continue
+            print('run <%s>' % cmd)
+    else:
+        print('用户名或密码错误')
 
 
 '''
@@ -128,7 +163,21 @@ while end_flag:
         print("猜对了！友谊地久天长～")
         break
 
-
+# 练习五参考答案一
+Albert_age = 18
+count = 0
+while True:
+    if count == 3:   # 将是否达到3次和是否猜对拆成了两个if语句来写。
+        choice = input('继续(Y/N?)>>: ')
+        if choice == 'Y' or choice == 'y':
+            count = 0
+        else:
+            break
+    guess = int(input('>>: '))
+    if guess == Albert_age: # 只有<3的情况下才能执行这个if语句
+        print('you got it')
+        break
+    count += 1
 
 '''
 练习六：
@@ -163,13 +212,32 @@ for i in range(1, 100, 2):
 print(sum_)
 
 
-
 '''
 练习七：
     打印金字塔图形（等腰三角形），上面一行内容永远比下面少两颗星星
     且位于下面一行的正下方（用两层for loop）
 '''
 i = 5
-j = 5
 for num in range(1, i*2, 2):
     print(('*'*num).center(i*2, ' '))
+
+# 练习七参考答案一
+"""
+分析
+#max_level=5
+    *        #current_level=1，空格数=4，*号数=1
+   ***       #current_level=2,空格数=3,*号数=3
+  *****      #current_level=3,空格数=2,*号数=5
+ *******     #current_level=4,空格数=1,*号数=7
+*********    #current_level=5,空格数=0,*号数=9
+#数学表达式
+空格数=max_level-current_level
+*号数=2*current_level-1
+"""
+max_level = 5
+for current_level in range(1, max_level + 1):
+    for i in range(max_level - current_level):
+        print(' ', end='')  # 在一行中连续打印多个空格
+    for j in range(2 * current_level - 1):
+        print('*', end='')  # 在一行中连续打印多个空格
+    print()

@@ -9,6 +9,23 @@ def to_modify_doc(doc_name, doc_content):
         
 to_modify_doc('第六章.txt', '改成这些')
 
+# 练习一参考答案一
+import os
+
+def modify_file(file_name, old_content, new_content):
+    with open(file_name, mode='rt', encoding='utf-8') as read_f, \
+            open('%s.swap' % file_name, mode='wt', encoding='utf-8') as write_f:
+        for line in read_f:
+            if old_content in line:
+                line = line.replace(old_content, new_content)
+
+            write_f.write(line)
+
+    os.remove(file_name)
+    os.rename('%s.swap' % file_name, file_name)
+
+modify_file('db.txt', '马一特', '马一特[Albert]')
+
 
 
 '''
@@ -54,6 +71,13 @@ def to_judge_length(objecto):
 print(to_judge_length('aewfgarg'))
 print(to_judge_length([3,5,7,9,]))
 print(to_judge_length((5,8,0,3,5,)))
+
+# 练习三参考答案
+def judge_length(data):
+    if len(data) > 5:
+        return True
+    else:
+        return False
 
 
 
@@ -102,6 +126,13 @@ def first_two(objectc):
     return objectc
 
 print(first_two({'a1':'wefserg', 'a2':(1,2), 'a3':[7,5,3,8,2,]}))
+
+# 练习六参考答案
+def check_up_list(data_dict):
+    for key, value in data_dict.items():
+        if len(value) > 2:
+            data_dict[key] = value[:2]
+    return data_dict
 
 
 

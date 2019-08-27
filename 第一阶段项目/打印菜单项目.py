@@ -111,3 +111,27 @@ while tag & bool(menu):
             if not bool(menu[choice]):
                 print('\n%s的一级目录为空' % choice)
                 tag = False
+                
+# 参考答案
+layers = [menu, ]
+while True:
+    if len(layers) == 0:
+        break
+
+    current_layer = layers[-1]
+    for key in current_layer:
+        print(key)
+
+    choice = input('>>: ').strip()
+
+    if choice == 'b':
+        layers.pop(-1)
+        continue
+
+    if choice == 'q':
+        break
+
+    if choice not in current_layer:
+        continue
+
+    layers.append(current_layer[choice])               
